@@ -1,0 +1,24 @@
+---
+const noticias = await fetch(
+	"https://gpm-backend-production.up.railway.app/api/empresas?populate=*",
+	{
+		headers: {
+			Authorization:
+				"Bearer 6710372895e17bc46f9f15bace3f38af0c98a14b9d642a2acd91af1ddb26ea6c938b8da0c2222f03747d8aaad0576d82358c3498ded2b8f3c93e396f1718d9e6aa65324f0f6e368c29f7f4e07199a6b59430fafdfc876fb401fb9be7b908552f333bd2151deb3f9553ddb1eb786ad212fe0e7a724b30a400b2bca8911ae4ef71",
+		},
+	},
+);
+const { data } = await noticias.json();
+---
+
+<ul>
+	{
+		data.map((item: any) => (
+			<li class="mx-auto max-w-[1400px] px-5">
+				<h1 class="flex flex-col py-2 text-start text-2xl font-bold tracking-tight text-balance text-gray-800">
+					{item.nombre}
+				</h1>
+			</li>
+		))
+	}
+</ul>

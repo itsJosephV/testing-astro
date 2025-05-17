@@ -3,11 +3,10 @@
 
 import { RANDOM_N } from "astro:env/server";
 
-
 const response = await fetch(RANDOM_N);
 const data = await response.text();
 ---
 
-<p id="randomNumer" class="px-5 max-w-[1400px] mx-auto">
-  {data}
+<p id="randomNumer" class="mx-auto max-w-[1400px] px-5">
+	{data}
 </p>

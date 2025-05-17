@@ -9,25 +9,25 @@ import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
-  vite: {
-    plugins: [tailwindcss()],
-  },
+	vite: {
+		plugins: [tailwindcss()],
+	},
 
-  output: "server",
-  integrations: [react()],
+	output: "server",
+	integrations: [react()],
 
-  env: {
-    schema: {
-      RANDOM_N: envField.string({
-        context: "server",
-        access: "public",
-      }),
-    },
-  },
+	env: {
+		schema: {
+			RANDOM_N: envField.string({
+				context: "server",
+				access: "public",
+			}),
+		},
+	},
 
-  adapter: vercel({
-    webAnalytics: {
-      enabled: true,
-    },
-  }),
+	adapter: vercel({
+		webAnalytics: {
+			enabled: true,
+		},
+	}),
 });

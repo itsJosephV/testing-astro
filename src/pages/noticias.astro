@@ -1,0 +1,17 @@
+---
+import Layout from "../layouts/Layout.astro";
+import NoticiasComponent from "../components/Noticias.astro";
+
+// https://api.vercel.com/v1/integrations/deploy/prj_sc8uvD7nqIcgYeTGYCqgACpZi5AK/EAh2irPs8Y
+
+// https://gpm-backend-production.up.railway.app/api/noticias?populate=*
+// 6710372895e17bc46f9f15bace3f38af0c98a14b9d642a2acd91af1ddb26ea6c938b8da0c2222f03747d8aaad0576d82358c3498ded2b8f3c93e396f1718d9e6aa65324f0f6e368c29f7f4e07199a6b59430fafdfc876fb401fb9be7b908552f333bd2151deb3f9553ddb1eb786ad212fe0e7a724b30a400b2bca8911ae4ef71
+export const prerender = true;
+---
+
+<Layout>
+	<div>
+		<h1>NOTICIAS</h1>
+		<NoticiasComponent />
+	</div>
+</Layout>
