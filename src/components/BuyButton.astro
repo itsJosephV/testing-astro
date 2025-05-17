@@ -1,0 +1,19 @@
+---
+  const SPAIN = "ES"
+
+  const country = Astro.request.headers.get("X-Vercel-IP-Country") ?? "ES"
+
+  const storedCountry = country === SPAIN ? "ES" : "US"
+  const countryName = storedCountry === "ES" ? "Spain" : "United States"
+---
+
+<a
+  class="bg-pink-900 text-white px-4 py-2 rounded-md hover:bg-pink-800 transition duration-300"
+  href="https://www.example.com"
+  target="_blank"
+  rel="noopener noreferrer"
+  data-country={countryName}
+  data-testid="buy-button"
+ href="">
+{countryName === "Spain" ? "Comprar" : "Buy"}
+</a>

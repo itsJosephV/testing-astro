@@ -53,7 +53,7 @@ const images = [
 <!-- Right Button -->
 <button
   id="rightButton"
-  class="bg-gray-100 hover:bg-gray-50 transition-colors border cursor-pointer border-gray-200 text-gray-600 rounded-full w-10 h-10"
+  class="bg-gray-100 hover:bg-gray-50  transition-colors border cursor-pointer border-gray-200 text-gray-600 rounded-full w-10 h-10"
 >
   →
 </button>
@@ -62,9 +62,10 @@ const images = [
 
 
 <script>
-    const leftButton = document.getElementById("leftButton");
+    import { gsap } from "gsap";
+    const leftButton = document.getElementById("leftButton") as HTMLButtonElement;
     const scrollArea = document.getElementById("scrollArea");
-    const rightButton = document.getElementById("rightButton");
+    const rightButton = document.getElementById("rightButton") as HTMLButtonElement;
 
     const getWidth = () => {
       if (window.innerWidth >= 1024) return 400 + 32;
@@ -72,60 +73,43 @@ const images = [
       return 270 + 24;
     };
 
+   const animation = gsap.to(leftButton, {
+      x: -100,
+      paused: true,
+      duration: 2,
+      ease: "power1.inOut",
+      rotation: 120,
+      onComplete: () => {
+        animation.reverse();
+      },
+    });
+
+
+    // Button state updater
+    const updateButtonState = () => {
+      if (!scrollArea) return;
+      leftButton.disabled = scrollArea.scrollLeft <= 0;
+      leftButton.classList.toggle("opacity-50", leftButton.disabled);
+      leftButton.classList.toggle("cursor-default", leftButton.disabled);
+      rightButton.disabled = scrollArea.scrollLeft + scrollArea.clientWidth >= scrollArea.scrollWidth - 1;
+      rightButton.classList.toggle("opacity-50", rightButton.disabled);
+      rightButton.classList.toggle("cursor-default", rightButton.disabled);
+    };
+
+    scrollArea?.addEventListener("scroll", updateButtonState);
+    updateButtonState();
 
     leftButton?.addEventListener("click", () => {
       scrollArea?.scrollBy({ left: -getWidth(), behavior: "smooth" });
+      setTimeout(updateButtonState, 300);
     });
 
     rightButton?.addEventListener("click", () => {
       scrollArea?.scrollBy({ left: getWidth(), behavior: "smooth" });
+      setTimeout(updateButtonState, 300);
+    });
+
+    rightButton?.addEventListener("click", () => {
+      animation.play();
     });
 </script>
-
-{/* 
-<section class="relative lg:mt-28 md:mt-24 mt-20 overflow-hidden">
-  <!-- Scrollable container -->
-  <div
-    id="scrollArea"
-    class="w-full h-full overflow-x-scroll no-scrollbar scroll-smooth"
-    style={{
-      overscrollBehavior: "auto",
-      scrollSnapType: "x mandatory"
-    }}
-  >
-    <div class="inline-flex lg:gap-8 md:gap-7 gap-6 h-full px-[calc((100vw_-_min(1400px,_100vw_-_2.5rem))_/_2)]">
-      {images.map((item) => (
-        <div 
-          class=" lg:w-[400px] md:w-[330px] w-[270px] lg:h-[750px] md:h-[600px] h-[500px] "
-          style={{ scrollSnapAlign: "center" }}
-        >
-          <div class="flex items-center justify-center h-full rounded-4xl overflow-hidden">                
-            <img
-              src={item}
-              class="h-full w-full object-cover "
-            />
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-
-  <!-- Left Button -->
- <div class="flex items-center gap-2 justify-end mt-4 px-[calc((100vw_-_min(1400px,_100vw_-_2.5rem))_/_2)]">
-  <button
-  id="leftButton"
-  class=" bg-gray-100 border border-gray-200 cursor-pointer transition-colors hover:bg-gray-50 text-gray-600 rounded-full w-10 h-10"
->
-  ←
-</button>
-
-<!-- Right Button -->
-<button
-  id="rightButton"
-  class="bg-gray-100 hover:bg-gray-50 transition-colors border cursor-pointer border-gray-200 text-gray-600 rounded-full w-10 h-10"
->
-  →
-</button>
- </div>
-</section>
-*/}

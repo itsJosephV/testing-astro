@@ -1,0 +1,13 @@
+---
+// https://www.random.org/integers/?num=1&min=1&max=5&col=1&base=10&format=plain&rnd=new
+
+import { RANDOM_N } from "astro:env/server";
+
+
+const response = await fetch(RANDOM_N);
+const data = await response.text();
+---
+
+<p id="randomNumer" class="px-5 max-w-[1400px] mx-auto">
+  {data}
+</p>

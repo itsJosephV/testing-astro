@@ -1,0 +1,45 @@
+---
+import RandomButton from "../components/RandomButton.astro";
+import Layout from "../layouts/Layout.astro";
+
+export const prerender = true;
+---
+
+<Layout>
+  <main>
+    <section>
+      <div class="px-5 max-w-[1400px] mx-auto">
+        <h1
+          class="text-2xl text-start text-balance font-bold text-gray-800 py-2 flex flex-col tracking-tight"
+        >
+          About Us
+        </h1>
+        <p class="text-gray-600">
+          We are a team of passionate developers and designers who love creating beautiful and functional web applications.
+        </p>
+      </div>
+      <!-- <p id="randomNumer" class="px-5 max-w-[1400px] mx-auto">
+      </p> -->
+      <RandomButton server:defer >
+        <p slot="fallback" class="bg-red-200 max-w-[1400px] mx-auto">
+          <span class="px-5">loading...</span>
+        </p>
+      </RandomButton>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, ratione.</p>
+    </section>
+  </main>
+</Layout>
+
+
+<script>
+  // import { RANDOM_N } from "astro:env/client";
+
+  // const scoreElement = document.getElementById("randomNumer");
+
+  // fetch(RANDOM_N).then((res) => res.text()).then((data) => {
+  //   if(scoreElement) {
+  //     scoreElement.innerHTML = `puntuacion de la API: ${data}`;
+  //   }
+  // })
+
+</script>
