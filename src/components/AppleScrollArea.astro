@@ -1,0 +1,131 @@
+---
+const images = [
+  "https://images.unsplash.com/photo-1690051997228-da7150c66880?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDd8fHxlbnwwfHx8fHw%3D",
+  "https://images.unsplash.com/photo-1536768139911-e290a59011e4?q=80&w=3417&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1602338681424-e148ee1cc7f9?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDE1fHx8ZW58MHx8fHx8",
+  "https://images.unsplash.com/photo-1493514995503-6afba7c6fa08?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDEzfHx8ZW58MHx8fHx8",
+  "https://plus.unsplash.com/premium_photo-1666700698946-fbf7baa0134a?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDI3fHx8ZW58MHx8fHx8",
+  "https://images.unsplash.com/photo-1635205412911-394b98e06047?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDM2fHx8ZW58MHx8fHx8",
+  "https://images.unsplash.com/photo-1613487897980-50cc440ce118?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDQ5fHx8ZW58MHx8fHx8",
+  "https://images.unsplash.com/photo-1675687962466-03f593b903ef?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDU5fHx8ZW58MHx8fHx8",
+  "https://images.unsplash.com/photo-1573455494057-12684d151bf4?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDYyfHx8ZW58MHx8fHx8",
+  "https://images.unsplash.com/photo-1682574137138-ad89cc413d7d?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1yZWxhdGVkfDg5fHx8ZW58MHx8fHx8"
+];
+---
+
+
+<section class="relative lg:mt-28 md:mt-24 mt-20 overflow-hidden">
+  <!-- Scrollable container -->
+  <div
+    id="scrollArea"
+    class="w-full h-full overflow-x-scroll no-scrollbar scroll-smooth"
+    style={{
+      overscrollBehavior: "auto",
+      scrollSnapType: "x mandatory"
+    }}
+  >
+    <ul class="inline-flex lg:gap-8 md:gap-7 gap-6 h-full px-[calc((100vw_-_min(1400px,_100vw_-_2.5rem))_/_2)]">
+      {images.map((item) => (
+        <li 
+          class=" lg:w-[400px] md:w-[330px] w-[270px] lg:h-[750px] md:h-[600px] h-[500px] "
+          style={{ scrollSnapAlign: "center" }}
+        >
+          <div class="flex items-center justify-center h-full rounded-4xl overflow-hidden">                
+            <img
+              src={item}
+              class="h-full w-full object-cover "
+            />
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- Left Button -->
+ <div class="flex items-center gap-4 justify-end mt-4 px-[calc((100vw_-_min(1400px,_100vw_-_2.5rem))_/_2)]">
+  <button
+  id="leftButton"
+  class=" bg-gray-100 border border-gray-200 cursor-pointer transition-colors hover:bg-gray-50 text-gray-600 rounded-full w-10 h-10"
+>
+  ←
+</button>
+
+<!-- Right Button -->
+<button
+  id="rightButton"
+  class="bg-gray-100 hover:bg-gray-50 transition-colors border cursor-pointer border-gray-200 text-gray-600 rounded-full w-10 h-10"
+>
+  →
+</button>
+ </div>
+</section>
+
+
+<script>
+    const leftButton = document.getElementById("leftButton");
+    const scrollArea = document.getElementById("scrollArea");
+    const rightButton = document.getElementById("rightButton");
+
+    const getWidth = () => {
+      if (window.innerWidth >= 1024) return 400 + 32;
+      if (window.innerWidth >= 768) return 330 + 28;
+      return 270 + 24;
+    };
+
+
+    leftButton?.addEventListener("click", () => {
+      scrollArea?.scrollBy({ left: -getWidth(), behavior: "smooth" });
+    });
+
+    rightButton?.addEventListener("click", () => {
+      scrollArea?.scrollBy({ left: getWidth(), behavior: "smooth" });
+    });
+</script>
+
+{/* 
+<section class="relative lg:mt-28 md:mt-24 mt-20 overflow-hidden">
+  <!-- Scrollable container -->
+  <div
+    id="scrollArea"
+    class="w-full h-full overflow-x-scroll no-scrollbar scroll-smooth"
+    style={{
+      overscrollBehavior: "auto",
+      scrollSnapType: "x mandatory"
+    }}
+  >
+    <div class="inline-flex lg:gap-8 md:gap-7 gap-6 h-full px-[calc((100vw_-_min(1400px,_100vw_-_2.5rem))_/_2)]">
+      {images.map((item) => (
+        <div 
+          class=" lg:w-[400px] md:w-[330px] w-[270px] lg:h-[750px] md:h-[600px] h-[500px] "
+          style={{ scrollSnapAlign: "center" }}
+        >
+          <div class="flex items-center justify-center h-full rounded-4xl overflow-hidden">                
+            <img
+              src={item}
+              class="h-full w-full object-cover "
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Left Button -->
+ <div class="flex items-center gap-2 justify-end mt-4 px-[calc((100vw_-_min(1400px,_100vw_-_2.5rem))_/_2)]">
+  <button
+  id="leftButton"
+  class=" bg-gray-100 border border-gray-200 cursor-pointer transition-colors hover:bg-gray-50 text-gray-600 rounded-full w-10 h-10"
+>
+  ←
+</button>
+
+<!-- Right Button -->
+<button
+  id="rightButton"
+  class="bg-gray-100 hover:bg-gray-50 transition-colors border cursor-pointer border-gray-200 text-gray-600 rounded-full w-10 h-10"
+>
+  →
+</button>
+ </div>
+</section>
+*/}

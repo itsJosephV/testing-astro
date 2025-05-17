@@ -1,0 +1,39 @@
+---
+import "../styles/global.css";
+import "@fontsource-variable/outfit"
+import Chevron from "../components/icons/Chevron.astro";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>Astro Basics</title>
+	</head>
+	<body class="grid grid-rows-[auto_1fr_auto] min-h-screen antialiased">
+		<header class="bg-white/80 backdrop-blur-2xl text-pink-900 sticky top-0 z-50">
+			<nav class="flex items-center justify-between max-w-[1400px] mx-auto px-5 py-4">
+				<a href="/" class="text-2xl font-bold">Astro</a>
+				<ul class="md:flex space-x-8 text-lg hidden">
+					<li><a href="/">Home</a></li>
+					<li><a href="/about">About</a></li>
+					<li><a href="/contact">Contact</a></li>
+					<li><a href="/contact" class="flex items-center gap-0.5"><span>
+						Dropdown</span> <Chevron class={"size-[18px] relative top-px"}  /></a></li>
+				</ul>
+			</nav>
+		</header>
+		<slot />
+		<footer class="bg-gray-800 text-white">this is a footer</footer>
+	</body>
+</html>
+
+
+<style>
+	body {
+		font-family: 'Outfit', sans-serif;
+	}
+</style>

@@ -1,0 +1,40 @@
+---
+import { Apple } from "lucide";
+import Layout from "../layouts/Layout.astro";
+import AppleScrollArea from "../components/AppleScrollArea.astro";
+
+---
+
+<Layout>
+  <main class="mb-20 overflow-hidden">
+    <section class="h-[60vh]">
+      <div class="h-full w-full relative">
+        <img
+          src="https://images.unsplash.com/photo-1557409518-691ebcd96038?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          class="h-full w-full object-cover"
+          alt=""
+        />
+				<div class="absolute inset-0 px-5 flex items-center justify-start">
+					<h1
+						class="text-white text-balance text-5xl md:text-7xl lg:text-9xl font-bold md:text-start text-center text-shadow-lg max-w-[1400px] mx-auto"
+					>
+						THIS IS AN ASTRO PLAYGROUND
+					</h1>
+					
+				</div>
+      </div>
+    </section>
+    <section class="lg:mt-28 md:mt-24 mt-20">
+      <div class="px-5 max-w-[1400px] mx-auto">
+        <h1
+          class="lg:text-9xl md:text-7xl text-5xl text-start text-balance font-bold text-gray-800 lg:py-8 md:py-6 py-4 flex flex-col space-y-6 tracking-tight"
+        >
+          <span class="text-pink-200"> PINK </span>
+          <span class="text-pink-300"> PINKER </span>
+          <span class="text-pink-400"> PINKEST </span>
+        </h1>
+      </div>
+    </section>
+    <AppleScrollArea />
+  </main>
+</Layout>
