@@ -5,13 +5,17 @@ import tailwindcss from "@tailwindcss/vite";
 
 import react from "@astrojs/react";
 
+import vercel from "@astrojs/vercel";
+
 // https://astro.build/config
 export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
+
   output: "server",
   integrations: [react()],
+
   env: {
     schema: {
       RANDOM_N: envField.string({
@@ -20,4 +24,6 @@ export default defineConfig({
       }),
     },
   },
+
+  adapter: vercel(),
 });
