@@ -1,39 +1,37 @@
-
-
-<section class="lg:mt-28 md:mt-24 mt-20">
-  <div class="px-5 max-w-[1400px] mx-auto">
-    <h1
-      class="lg:text-9xl md:text-7xl text-5xl text-start text-balance font-bold text-gray-800 lg:py-8 md:py-6 py-4 flex flex-col space-y-6 tracking-tight"
-    >
-    <span class="text-pink-200 animate-pink">PINK</span>
-    <span class="text-pink-300 animate-pink">PINKER</span>
-    <span class="text-pink-400 animate-pink">PINKEST</span>
-    </h1>
-  </div>
+<section class="mt-20 md:mt-24 lg:mt-28">
+	<div class="mx-auto max-w-[1400px] px-5">
+		<h1
+			class="flex flex-col space-y-6 py-4 text-start text-5xl font-bold tracking-tight text-balance text-gray-800 md:py-6 md:text-7xl lg:py-8 lg:text-9xl"
+		>
+			<span class="animate-pink text-pink-200">PINK</span>
+			<span class="animate-pink text-pink-300">PINKER</span>
+			<span class="animate-pink text-pink-400">PINKEST</span>
+		</h1>
+	</div>
 </section>
 
 <script>
-  import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
+	import { gsap } from "gsap";
+	import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-  gsap.registerPlugin(ScrollTrigger);
+	gsap.registerPlugin(ScrollTrigger);
 
-  const pinkElements = document.querySelectorAll(".animate-pink");
+	const pinkElements = document.querySelectorAll(".animate-pink");
 
-  pinkElements.forEach((el, index) => {
-    gsap.from(el, {
-      duration: 1,
-      opacity: 0,
-      y: 40,
-      delay: index * 0.125,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: el,
-        start: "top 90%",
-        end: "top 60%",
-        toggleActions: "play none none none",
-        // once: true,
-      },
-    });
-  });
+	pinkElements.forEach((el, index) => {
+		gsap.from(el, {
+			duration: 1,
+			opacity: 0,
+			y: 40,
+			delay: index * 0.125,
+			ease: "power2.out",
+			scrollTrigger: {
+				trigger: el,
+				start: "top 90%",
+				end: "top 60%",
+				toggleActions: "play none none none",
+				// once: true,
+			},
+		});
+	});
 </script>

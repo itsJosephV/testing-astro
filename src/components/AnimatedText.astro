@@ -1,0 +1,74 @@
+<style>
+	#animated-text,
+	#background-image {
+		visibility: hidden;
+	}
+</style>
+
+<section class="h-[60vh]">
+	<div class="relative h-full w-full overflow-hidden">
+		<img
+			id="background-image"
+			src="https://images.unsplash.com/photo-1557409518-691ebcd96038?q=80&w=3270&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+			class="h-full w-full object-cover"
+			alt=""
+		/>
+		<div class="absolute inset-0 flex items-center justify-start px-5">
+			<h1
+				id="animated-text"
+				class="mx-auto max-w-[1400px] text-center text-5xl font-bold text-balance text-white text-shadow-lg md:text-start md:text-7xl lg:text-9xl"
+			>
+				THIS IS AN ASTRO PLAYGROUND
+			</h1>
+		</div>
+	</div>
+</section>
+
+<script>
+	import { gsap } from "gsap";
+	import { SplitText } from "gsap/SplitText";
+
+	gsap.registerPlugin(SplitText);
+
+	document.fonts.ready.then(() => {
+		function runAnimation() {
+			return SplitText.create("#animated-text", {
+				type: "words",
+				onSplit: (self) => {
+					gsap.set(["#animated-text", "#background-image"], { visibility: "visible" });
+
+					const tl = gsap.timeline({ defaults: { ease: "power2.out" } });
+
+					tl.fromTo(
+						"#background-image",
+						{ scale: 1.1, autoAlpha: 0 },
+						{
+							scale: 1,
+							autoAlpha: 1,
+							duration: 1.5,
+							ease: "power4.out",
+						},
+					);
+					tl.fromTo(
+						self.words,
+						{ y: 100, autoAlpha: 0 },
+						{
+							y: 0,
+							autoAlpha: 1,
+							duration: 1,
+							stagger: 0.05,
+							ease: "back.out(1.7)",
+						},
+						"-=0.75",
+					);
+				},
+			});
+		}
+		runAnimation();
+
+		window.addEventListener("DOMContentLoaded", runAnimation);
+		window.addEventListener("pageshow", (event) => {
+			if (event.persisted) runAnimation();
+		});
+	});
+</script>
