@@ -1,11 +1,11 @@
 ---
 export const prerender = false;
-const { isTenerife, city } = Astro.locals;
+const { city } = Astro.locals;
 ---
 
 <div class="text-center">
 	<h1 class="text-5xl font-bold text-balance text-black">
-		{isTenerife ? "Welcome to Tenerife!" : "Not in Tenerife"}
+		{city ? "Welcome to Tenerife!" : "Not in Tenerife"}
 	</h1>
 	<p class="mt-4 text-gray-600">Detected city: {city ?? "Unknown"}</p>
 </div>
