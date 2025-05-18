@@ -3,8 +3,8 @@ import { defineMiddleware } from "astro:middleware";
 
 export const onRequest = defineMiddleware(async (context, next) => {
 	const request = context.request;
-	const city = request.headers.get("X-Vercel-IP-City").split(" ")[0];
-	const region = request.headers.get("X-Vercel-IP-Country-Region").split(" ")[0];
+	const city = request.headers.get("X-Vercel-IP-City");
+	const region = request.headers.get("X-Vercel-IP-Country-Region");
 
 	try {
 		// const response = await fetch(`https://ipapi.co/${ip}/json/`);
