@@ -1,6 +1,6 @@
 ---
 export const prerender = false;
-const { city } = Astro.locals;
+const { city, region } = Astro.locals;
 ---
 
 <div class="text-center">
@@ -8,4 +8,5 @@ const { city } = Astro.locals;
 		{city ? "Welcome to Tenerife!" : "Not in Tenerife"}
 	</h1>
 	<p class="mt-4 text-gray-600">Detected city: {city ?? "Unknown"}</p>
+	<p class="mt-4 text-gray-600">Detected region: {region ?? "Unknown"}</p>
 </div>
